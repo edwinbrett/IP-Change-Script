@@ -9,6 +9,10 @@ Write-Host " IP Change Script
 ===================" -ForegroundColor Blue
 Write-Host "Searching for Adapters..." -ForegroundColor Yellow
 
+<<<<<<< HEAD
+=======
+Get-NetAdapter | ForEach-Object ($_.Name){Get-NetIPConfiguration} 
+>>>>>>> 76726eeb3db8da0120309226d44cae77274021bc
 
 $Adapters = (Get-NetAdapter).Name
 foreach ($interface in $Adapters) {
