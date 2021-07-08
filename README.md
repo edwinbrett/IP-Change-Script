@@ -1,7 +1,7 @@
 # IP-Change-Script
 A script to change IPs on specific interfaces.
 
-ROAD MAP
+<b>ROAD MAP</b>
 
 1. Create a list of selectable adapters, Example: Ethernet & Uplink. Script should prompt for a selection of the adapters by entering 1 or 2 into the command prompt
 
@@ -19,6 +19,6 @@ ROAD MAP
 
 8. Once completed, the scipt should validate the settings via a Ping of 1.1.1.1
 
-PIPE DREAM/WISHES
+<b>PIPE DREAM/WISHES</b>
 
 1. The ability to select an interface to disable, and an interface to enable, before all of the other prompts.
