@@ -10,6 +10,6 @@ Write-Host " IP Change Script
 
 Write-Host "Searching for Adapters..." -ForegroundColor Yellow
 
-Get-NetAdapter -Name *
+Get-NetAdapter | ForEach-Object ($_.Name){Get-NetIPConfiguration} 
 
 Write-Host "Select from previous list the adapter you would like to configure:"
