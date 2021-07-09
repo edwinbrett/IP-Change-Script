@@ -17,8 +17,31 @@ foreach ($interface in $Adapters) {
   $response = Read-Host "Is this the adpater you want to work with? : Y or N"
   if($response -eq 'Y' -or $response -eq 'y'){
         Write-Host "We will work on this adapter:" $interface
-        #set ip 
-        #set DNS
+        
+        $ipaddress = Read-Host "What would you like to set the IP to?"
+        Write-Host "Setting the IP Address to: " $ipaddress
+        New-NetIPAddress -IPAddress $ipaddress
+        Set-NetIPAddress -IPAddress $ipaddress
+        Start-Sleep -Seconds 2.5
+
+        $subnetmask = Read-Host "What would you like to set the Subnet mask to? Please submit the CIDR (/25, /32, etc.) with out the slash, aka '25'"
+        Write-Host "Setting subnet mask to a /" $subnetmask
+        Start-Sleep -Seconds 2.5
+        Set-NetIPAddress -PrefixLength $subnetmask
+        Start-Sleep -Seconds 2.5
+
+        $gateway = Read-Host "What would you like to set the gateway to?"
+        Write-Host "Setting Gateway to:" $gateway
+        Start-Sleep -Seconds 2.5
+        New-NetIPAddress -DefaultGateway $gateway
+        Start-Sleep -Seconds 2.5
+
+        $dnsserver = Read-Host "What would you like to set the DNS to?"
+        Write-Host "Setting the DNS server to: " $dnsserver
+        Start-Sleep -Seconds 2.5
+        Set-DnsClientServerAddress -ServerAddresses $dnsserver
+        Start-Sleep -Seconds 2.5
+
         #etcetc
         break;
 
