@@ -50,7 +50,7 @@ foreach ($interface in $Adapters) {
       
   }
   else{
-      Write-Host "LEARN TO FUCKING READ"
+      Write-Host "LEARN TO READ"
   }
 }
 
