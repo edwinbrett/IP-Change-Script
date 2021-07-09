@@ -54,8 +54,3 @@ foreach ($interface in $Adapters) {
   }
 }
 
-
-
-Write-Host "Select from previous list the adapter you would like to configure:"
-
-
