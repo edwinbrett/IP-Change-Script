@@ -9,19 +9,17 @@ Write-Host " IP Change Script
 ===================" -ForegroundColor Blue
 Write-Host "Searching for Adapters..." -ForegroundColor Yellow
 
-Get-NetAdapter | ForEach-Object ($_.Name){Get-NetIPConfiguration} 
-
-$Adapters = (Get-NetAdapter).Name
+$Adapters = Get-NetAdapter
 foreach ($interface in $Adapters) {
-  Write-Host "$interface found"
+  Write-Host "$($interface.Name) found"
   $response = Read-Host "Is this the adpater you want to work with? : Y or N"
   if($response -eq 'Y' -or $response -eq 'y'){
-        Write-Host "We will work on this adapter:" $interface
+        Write-Host "We will work on this adapter:" $interface.Name
         
         $ipaddress = Read-Host "What would you like to set the IP to?"
         Write-Host "Setting the IP Address to: " $ipaddress
-        New-NetIPAddress -IPAddress $ipaddress
-        Set-NetIPAddress -IPAddress $ipaddress
+        New-NetIPAddress -IPAddress $ipaddress -InterfaceAlias $interface.ifIndex
+        Set-NetIPAddress -IPAddress $ipaddress -InterfaceAlias $interface.ifIndex
         Start-Sleep -Seconds 2.5
 
         $subnetmask = Read-Host "What would you like to set the Subnet mask to? Please submit the CIDR (/25, /32, etc.) with out the slash, aka '25'"
