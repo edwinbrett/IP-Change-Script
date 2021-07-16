@@ -33,6 +33,9 @@ foreach ($interface in $Adapters) {
 
         Set-DnsClientServerAddress -ServerAddresses $dnsserver -InterfaceAlias $($interface.ifAlias)
 
+        Write-Host "Ping Test to 1.1.1.1" 
+        ping 1.1.1.1
+
         break;
 
   } elseif ($response -eq 'N' -or $response -eq 'n') {
