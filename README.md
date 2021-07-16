@@ -15,10 +15,10 @@ A script to change IPs on specific interfaces.
 
 6. The script should then ask if the user wants to set custom DNS servers, this should prompt the user with a yes or no, that can be responded with y/n
 
-7. After which it should prompt the user to input the first DNS server. Then it should prompt for a second one, but the second one should not require a response.</s>
+7. After which it should prompt the user to input the first DNS server. Then it should prompt for a second one, but the second one should not require a response.
 
-8. Once completed, the scipt should validate the settings via a Ping of 1.1.1.1
+8. Once completed, the scipt should validate the settings via a Ping of 1.1.1.1</s>
 
 <b>PIPE DREAM/WISHES</b>
 
-1. The ability to select an interface to disable, and an interface to enable, before all of the other prompts.
+1. The ability to select an interface to disable, and an interface to enable, before all of the other prompts. (JON WE CAN DO THIS LATER)
