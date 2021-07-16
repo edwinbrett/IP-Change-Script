@@ -17,30 +17,22 @@ foreach ($interface in $Adapters) {
         Write-Host "We will work on this adapter:" $interface.Name
         
         $ipaddress = Read-Host "What would you like to set the IP to?"
-        Write-Host "Setting the IP Address to: " $ipaddress
-        New-NetIPAddress -IPAddress $ipaddress -InterfaceAlias $interface.ifIndex
-        Set-NetIPAddress -IPAddress $ipaddress -InterfaceAlias $interface.ifIndex
-        Start-Sleep -Seconds 2.5
-
         $subnetmask = Read-Host "What would you like to set the Subnet mask to? Please submit the CIDR (/25, /32, etc.) with out the slash, aka '25'"
-        Write-Host "Setting subnet mask to a /" $subnetmask
-        Start-Sleep -Seconds 2.5
-        Set-NetIPAddress -PrefixLength $subnetmask
-        Start-Sleep -Seconds 2.5
-
         $gateway = Read-Host "What would you like to set the gateway to?"
-        Write-Host "Setting Gateway to:" $gateway
-        Start-Sleep -Seconds 2.5
-        New-NetIPAddress -DefaultGateway $gateway
-        Start-Sleep -Seconds 2.5
-
         $dnsserver = Read-Host "What would you like to set the DNS to?"
-        Write-Host "Setting the DNS server to: " $dnsserver
-        Start-Sleep -Seconds 2.5
-        Set-DnsClientServerAddress -ServerAddresses $dnsserver
+
+
+        Write-Host "Setting the Interface up now"
+
+        Remove-NetIPAddress -AddressFamily IPv4 -Confirm:$false -ErrorAction SilentlyContinue
+        Remove-NetRoute -AddressFamily IPv4 -Confirm:$false -ErrorAction SilentlyContinue
+
+        New-NetIPAddress -IPAddress $ipaddress -InterfaceAlias $($interface.ifAlias) -PrefixLength $subnetmask -DefaultGateway $gateway -AddressFamily IPv4
+ 
         Start-Sleep -Seconds 2.5
 
-        #etcetc
+        Set-DnsClientServerAddress -ServerAddresses $dnsserver -InterfaceAlias $($interface.ifAlias)
+
         break;
 
   } elseif ($response -eq 'N' -or $response -eq 'n') {
@@ -51,4 +43,3 @@ foreach ($interface in $Adapters) {
       Write-Host "LEARN TO READ"
   }
 }
-
