@@ -26,23 +26,22 @@ foreach ($interface in $Adapters) {
 
         Remove-NetIPAddress -AddressFamily IPv4 -Confirm:$false -ErrorAction SilentlyContinue
         Remove-NetRoute -AddressFamily IPv4 -Confirm:$false -ErrorAction SilentlyContinue
-
         New-NetIPAddress -IPAddress $ipaddress -InterfaceAlias $($interface.ifAlias) -PrefixLength $subnetmask -DefaultGateway $gateway -AddressFamily IPv4
- 
         Start-Sleep -Seconds 2.5
-
         Set-DnsClientServerAddress -ServerAddresses $dnsserver -InterfaceAlias $($interface.ifAlias)
-
+        Start-Sleep -Seconds 2.5
         Write-Host "Ping Test to 1.1.1.1" 
         ping 1.1.1.1
-
         break;
 
-  } elseif ($response -eq 'N' -or $response -eq 'n') {
+  } elseif ($response -eq 'N' -or $response -eq 'n' -and $_ -ne $null) {
       Write-Host "Moving on to the next adapter"
       
-  }
-  else{
+  } elseif ($response -ne 'Y' -or $response -ne 'y' -or $response -ne 'N' -or $response -ne 'n' ){
       Write-Host "LEARN TO READ"
+      break;
+  
+  } else{
+      Write-Host "There are no other adapters. Closing script"
   }
 }
