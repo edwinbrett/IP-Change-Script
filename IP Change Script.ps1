@@ -37,7 +37,7 @@ if($null -ne $interface){
       
         } else{
               Write-Host "LEARN TO READ"
-          break;
+              exit;
         }    
       }
     Write-Host "There are no other adapters. Closing script"   
