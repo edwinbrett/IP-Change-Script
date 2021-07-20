@@ -21,4 +21,4 @@ A script to change IPs on specific interfaces.
 
 <b>PIPE DREAM/WISHES</b>
 
-1. The ability to select an interface to disable, and an interface to enable, before all of the other prompts. (JON WE CAN DO THIS LATER)
+1. The ability to select an interface to disable, and an interface to enable, before all of the other prompts.
