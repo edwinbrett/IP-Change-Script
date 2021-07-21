@@ -6,7 +6,7 @@ Made by Edwin Brett, Please reach out via https://Edwinbrett.com if you have any
 #>
 
 Write-Host " IP Change Script
-===================" -ForegroundColor Blue
+===================" -ForegroundColor Cyan
 Write-Host "Searching for Adapters..." -ForegroundColor Yellow
 
 try{
@@ -82,5 +82,5 @@ if($null -ne $interface){
             Write-Host "ERROR" $exception
 }   
         }finally { 
-            Write-Host "-----------------------------------JOB COMPLETED-------------------------------------" -ForegroundColor Blue
+            Write-Host "-----------------------------------JOB COMPLETED-------------------------------------" -ForegroundColor Green
 }
